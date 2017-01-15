@@ -1,0 +1,61 @@
+\documentclass{article}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[marginparwidth={4cm}]{geometry}
+\geometry{left=2.5cm,right=6.5cm,top=2.5cm,bottom=2.5cm}
+\setlength{\parindent}{0pt}
+\usepackage{marginnote}
+\begin{document}
+6\qquad COMBINATORIAL\ ALGORITHMS\ (f0b)\hspace{4.5cm}7.1.1
+ \\\\
+\marginnote{\scriptsize linear\\multilinear\hspace{0.1cm}representation \\Boole \\development\\minterms\\truth\hspace{0.1cm}table \\pi,\hspace{0.1cm}as\hspace{0.1cm}"random"\hspace{0.1cm}example}
+$0-ary functions leaves us with an expression that involves only the operators $\oplus$, $\wedge$, and a 
+sequence of $2^{n}$ constants. Furthermore, those constants can usually be simplified away, because we have \vspace{0.3cm} \\ 
+\indent \hspace{2cm}
+$x \wedge 0 = 0$ \hspace{0.8cm} and \hspace{0.8cm} $x \wedge 1 = x \oplus 0 = x$.
+\hspace{3.4cm} (18) \vspace{0.08cm} \\ 
+After applying the associative and distributive laws, we end up needing the constant 0 only if $f(x_1,..., x_k)$ is identically zero, and the constant 1 only if $f(0 ,...,0) = 1$.
+\\ \indent\hspace{0.3cm}
+We might have, for instance, \vspace{0.3cm}\\
+\indent\hspace{0.2cm}
+$ f(x, y, z) = ((1 \oplus 0 \wedge x) \oplus (0 \oplus 1 \wedge x) \wedge y) \oplus ((0 \oplus 1 \wedge x) \oplus (1 \oplus 1 \wedge x) \wedge y) \wedge z$ 
+\newline\indent\hspace{1.7cm}
+$= (1 \oplus x \wedge y) \oplus (x \oplus y \oplus x \wedge y) \wedge z$
+\newline \indent \hspace{1.7cm}
+$= 1 \oplus x \wedge y \oplus x \wedge z \oplus y \wedge z \oplus x \wedge y \wedge z\vspace{0.3cm}$.
+
+And by rule (5), we see that we're simply left with the polynomial \vspace{0.3cm} \\
+ \indent \hspace{1.5cm}
+ $f(x, y, z)$ = $(1 + xy + xz + yz + xyz)$ mod 2, 
+ \hspace{4cm} (19) \vspace{0.08cm} \\ 
+ because $x \wedge y = xy$. Notice that this polynomial is linear(of degree $\leq$ 1) in each of its variables. In general, a similar calculation will show that \emph{any}
+ Boolean function $f(x_1, ..., x_n)$ jas a unique representation such as this, called its \emph{multilinear representation}, which is a sum (modulo 2) of zero or more of the $2^n$ possible terms 1, $x_1$, $x_2$, $x_1x_2$, $x_3$, $x_1x_3$, $x_2x_3$, $x_1x_2x_3$,$...$, $x_1x_2...x_n$. \\
+ \indent
+ George Boole decomposed Boolean functions in a different way, which is often simpler for the kinds of functions that arise in practice. Instead of (16), he essentially wrote \vspace{0.3cm} \\ \indent
+ $f(x_1, ..., x_n)$ = $(g(x_1, ..., x_{n-1}) \wedge \bar{x})$ $\vee$ $(h(x_1, ..., x_{n-1}) \wedge x_n)$
+ \hspace{3cm} (20) \vspace{0.08cm} \\ 
+ and called it the "law of development," where we now have simply
+ \vspace{0.3cm} \\ \indent
+ \hspace{2cm} 
+ $g(x_1, ..., x_{n-1})$ = $f(x_1, ..., x_{n-1}, 0)$, \vspace{0.1mm}
+ \\ \indent \hspace{11.9cm}  (21)
+ \\ \indent
+ \hspace{2cm}
+ $h(x_1, ..., x_{n-1})$ = $f(x_1, ..., x_{n-1}, 1)$, 
+ \vspace{0.3cm} \\
+ instead of (17). Repeatedly iterating Boole's procedure, using the distributive law (1), and eliminating constants, leaves us with a formula that is a disjunction of zero or more \emph{minterms}, where each minterm is a conjunction such as 
+ $x_1 \wedge \bar{x}_2 \wedge \bar{x}_3 \wedge x_4 \wedge \bar{x}_5$ in which every variable or its complement is present. Notice that a minterm is a Boolean function that is true at exactly one point. \\ \indent
+ For example, let's consider the more-or-less random function $f(w, x, y, z)$ whose truth table is 
+ \vspace{0.3cm} \\ \indent
+ \hspace{4cm}
+ 1100 1001 0000 1111.
+\hspace{4.5cm} (22) \vspace{0.08cm}  \\
+When this function is expanded by repeatedly applying Boole's law (20), we get a disjunction of eight minterms, one for each of the 1s in the truth table:
+ \vspace{0.3cm} \\ \indent
+ $f(w, x, y, z)$ = $(\bar{w} \wedge \bar{x} \wedge \bar{y} \wedge \bar{z})$ $\vee$ $(\bar{w} \wedge \bar{x} \wedge \bar{y} \wedge z)$ $\vee$ $(\bar{w} \wedge x \wedge \bar{y} \wedge \bar{z})$ $\vee$
+ $(\bar{w} \wedge x \wedge y \wedge z)$ \newline\indent\hspace{1cm}$\vee$ $(w\wedge x\wedge \bar{y} \wedge \bar{z})$ $\vee$ $(w \wedge x \wedge \bar{y} \wedge z)$ $\vee$  
+ $(w \wedge x \wedge y \wedge \bar{z})$ $\vee$ $(w \wedge x \wedge y \wedge z)$. \hspace{0cm} (23)
+
+$
+
+\end{document}
